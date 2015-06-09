@@ -16,7 +16,7 @@
 
 # This function estimate Pearson,  Spearman, and   MIC   correlation  analysis into a tabular dataset
 
-#' @title Non-linear correlation
+#' @title Performs a linear and non-linear correlation
 #' @param x A matrix or dataframe with objects in the rows and features in the columns 
 #' @param method a string with one of the following values:  \code{pearson}, \code{spearman},\code{MIC} 
 #' @param scale  a boolean indicating if the variables should be scaled.  

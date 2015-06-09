@@ -14,9 +14,9 @@
 #  http://www.r-project.org/Licenses/
 #
 
-# This function performs  find optimal number of clusterings in the correlation matrix and plot them   as a dendrogram
+# This function   finds an  optimal number of clusterings in the correlation matrix and plot them   as a dendrogram
 
-#' @title Dendrogram of a hierarchical clustering from a correlation matrix
+#' @title Plot a dendrogram  from a correlation matrix
 #' @param corr Correlation Matrix 
 #' @param type logical 
 #' @return Dendrogram colored by clusters 

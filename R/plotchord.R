@@ -1,4 +1,4 @@
-#  R package GRAD file R/plotcorrDist.R
+#  R package GRAD file R/plotchord.R
 #  Copyright (C) 2014  Rafael S. de Souza
 #
 #This program is free software: you can redistribute it and/or modify
@@ -14,40 +14,34 @@
 #  http://www.r-project.org/Licenses/
 #
 
-# This function displays a distogram of a given correlation matrix
+# This function displays a chord diagram of a given correlation matrix
 
-#' @title Plot a distogram fom a correlation matrix
+#' @title Plot a chord diagram from a correlation matrix
 #' @param x a correlation  matrix 
-#' @param labels a list with variables names, default = NULL
+#' @param color a list with color pallets: "RdBu","YlGn","PRGn","OrRd", default = "RdBu"
 #' @param ... other options for distogram function
-#' @return A plot of the Correlation Matrix
-#' @import  corrplot squash
+#' @return A plot of the Chord diagram
+#' @import  circlize RColorBrewer
 #'@examples
 #'  data(iris)
-#'  cor1<-Corr_MIC(iris[,1:4],method="pearson")
-#'  plotcorrDist(cor1)
-#' @usage plotcorrDist(x,labels=NULL,...)
+#' cor1<-Corr_MIC(iris[,1:4],method="pearson")
+#' plotchord(cor1)
+#' @usage plotchord(x,color="RdBu",...)
 #' 
 #' @author Rafael S. de Souza
 #' 
 #' @keywords misc
-#' @details The program is a simple alteration of distogram(). 
+#' @details The program is a simple wrap  of chordDiagram() from package circlize. 
 #' @export 
 
-# Plot Correlation Matrix
+# Plot Chord diagram 
 
-plotcorrDist<-function(x,labels=NULL,...){
+plotchord<-function(x,color="RdBu",...){
   if(!is.matrix(x)&!is.data.frame(x))
     stop("Need a matrix or data frame!")
   
-  if(is.null(labels)){  
-    labels <- colnames(x)
-  }  
-  
-  
-  MIC_dis <- 1 - abs(x)
-  MIC_distance <- as.dist(MIC_dis)
-  map1<-distogram(MIC_distance,diag = F,cex=1,colFn = bluered,labels=labels,  key = FALSE,xpos=-2,asp=12/13)
-  vkey(map1, title = "d(x,y)",side = 2)
+
+ chordDiagram(x,grid.col = "gray70",symmetric = T,transparency = 0.3,
+               col = colorRamp2(seq(-1, 1, by = 0.25), rev(brewer.pal(9,color))))
   
 }
